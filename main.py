@@ -29,7 +29,7 @@ def predictions_to_proportions(predictions):
     return ["%.2f" % (p/sum_pred) for p in predictions]
 
 
-num_training_samples = 10000
+num_training_samples = 100000
 
 mnist_data = MNIST("MNIST_dataset_uncompressed")
 
@@ -42,11 +42,15 @@ training_inputs = normalize_inputs(training_images[:num_training_samples])
 print("parsing labels")
 training_outputs = convert_labels(training_labels[:num_training_samples])
 
+# nn = NeuralNetwork.from_existing_model("model")
 
-nn = NeuralNetwork(784, 10, hidden_size=16, num_hidden_layers=2)
+nn = NeuralNetwork(input_size=784, output_size=10, hidden_size=32, num_hidden_layers=2)
 
 print("Beginning training")
 nn.train(training_images, training_outputs, batch_size=40, learning_rate=0.1, iterations=500)
+
+print("Saving model")
+nn.save_model("model")
 
 print("loading test data")
 test_images, test_labels = mnist_data.load_testing()
