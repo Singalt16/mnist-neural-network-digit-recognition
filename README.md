@@ -9,7 +9,7 @@ And the MNIST handwritten digit dataset:
 
 http://yann.lecun.com/exdb/mnist/
 
-Place the dataset in a folder and replace the path in the following line in main.py with the path to your folder
+Place the uncompressed data files in a folder and replace the path in the following line in main.py with the path to your folder
 ```python
 mnist_data = MNIST("MNIST_dataset_uncompressed")
 ```
